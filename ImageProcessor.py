@@ -1,4 +1,5 @@
 from scipy import misc
+import numpy as np
 
 
 class ImageProcessor():
@@ -19,12 +20,13 @@ class ImageProcessor():
 
         return correctImage
 
+
     def findRectanges(self, imagePath):
-        colors = self.determineColorShift(imagePath)
-        rectifiedImage = 
-        # Do mathing here to determine rectangles
-        for row in colors:
-            for col in colors:
+        possibleRect = self.determineColorShift(imagePath)
+
+        for row in possibleRect:
+            for col in possibleRect:
+
                 # dosomething TODO
 
 
@@ -50,6 +52,6 @@ class ImageProcessor():
                 
                 result[row][col] = False
 
-        return result
+        return np.array(result)
 
     

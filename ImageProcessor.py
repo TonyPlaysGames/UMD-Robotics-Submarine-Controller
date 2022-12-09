@@ -1,3 +1,4 @@
+from scipy import misc
 
 
 class ImageProcessor():
@@ -12,14 +13,14 @@ class ImageProcessor():
         self.tolerance = tolerance
 
 
-    def someSortOfResult(self, image):
-        correctImage = self.findRectanges(image)
+    def someSortOfResult(self, imagePath):
+        correctImage = self.findRectanges(imagePath)
         ## Return however the data format they want is here TODO
 
         return correctImage
 
-    def findRectanges(self, image):
-        colors = self.determineColorShift(image)
+    def findRectanges(self, imagePath):
+        colors = self.determineColorShift(imagePath)
         rectifiedImage = 
         # Do mathing here to determine rectangles
         for row in colors:
@@ -30,18 +31,20 @@ class ImageProcessor():
         return 
 
 
-    def determineColorShift(self, image):
+    def determineColorShift(self, imagePath):
         # convert image into some sort of 2d array of RGB values.
-        colors = image.turnTo2D() # something like this. needs to be written. TODO
+        colors = misc.imread(imagePath) # WxHx3 array of RBG values misc.imread('example.png')
         result = None
     
-        # Processing results to check if within tolerances
+        # Processing results to check if within tolerances 
+        # TODO convert to gradient, rn we just check specific pixels. may not even be nessicary because checking
+        # within a tolerance is basically the same thing.
         for row in colors:
             for col in colors:
 
-                if(self.tolerance > abs(colors[row][col].red / self.colorPercentages.red)):
-                    if(self.tolerance > abs(colors[row][col].green / self.colorPercentages.green)):
-                        if(self.tolerance > abs(colors[row][col].blue / self.colorPercentages.blue)):
+                if(self.tolerance > abs(colors[row, col, 0] / self.colorPercentages.red)):
+                    if(self.tolerance > abs(colors[row, col, 1] / self.colorPercentages.green)):
+                        if(self.tolerance > abs(colors[row, col, 2] / self.colorPercentages.blue)):
                             result[row][col] = True
                             continue
                 

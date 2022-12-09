@@ -14,7 +14,7 @@ class ImageProcessor():
 
     def someSortOfResult(self, image):
         correctImage = self.findRectanges(image)
-        ## Return however the data format they want is here
+        ## Return however the data format they want is here TODO
 
         return correctImage
 
@@ -24,13 +24,15 @@ class ImageProcessor():
         # Do mathing here to determine rectangles
         for row in colors:
             for col in colors:
+                # dosomething TODO
 
 
         return 
 
+
     def determineColorShift(self, image):
         # convert image into some sort of 2d array of RGB values.
-        colors = image.turnTo2D() # something like this. needs to be written.
+        colors = image.turnTo2D() # something like this. needs to be written. TODO
         result = None
     
         # Processing results to check if within tolerances

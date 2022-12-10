@@ -10,7 +10,7 @@ class ImageProcessor():
     def __init__(self, percentages, tolerance):
         # Describes the ideal percent color distribution of RGB for sorting the image
         self.colorPercentages = percentages 
-
+        
         # Represends the percent of error ColorShift will allow to return true
         self.tolerance = tolerance
 

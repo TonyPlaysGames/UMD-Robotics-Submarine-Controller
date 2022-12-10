@@ -4,6 +4,7 @@ import numpy as np
 
 class ImageProcessor():
     colorPercentages = [255,255,255]
+    rectangeProportions = []
     tolerance = 0.2 #20% margin for error ex
 
     def __init__(self, percentages, tolerance):
@@ -24,11 +25,8 @@ class ImageProcessor():
     def findRectanges(self, imagePath):
         possibleRect = self.determineColorShift(imagePath)
 
-        for row in possibleRect:
-            for col in possibleRect:
-
-                # dosomething TODO
-
+        # dosomething TODO
+        foundRectangels = None
 
         return 
 
@@ -42,11 +40,11 @@ class ImageProcessor():
         # TODO convert to gradient, rn we just check specific pixels. may not even be nessicary because checking
         # within a tolerance is basically the same thing.
         for row in colors:
-            for col in colors:
+            for col in colors: #Not starting with a np array because I am lazy, converting at the end.
 
-                if(self.tolerance > abs(colors[row, col, 0] / self.colorPercentages.red)):
-                    if(self.tolerance > abs(colors[row, col, 1] / self.colorPercentages.green)):
-                        if(self.tolerance > abs(colors[row, col, 2] / self.colorPercentages.blue)):
+                if(self.tolerance > abs(colors[row, col, 0] / self.colorPercentages[0])):
+                    if(self.tolerance > abs(colors[row, col, 1] / self.colorPercentages[1])):
+                        if(self.tolerance > abs(colors[row, col, 2] / self.colorPercentages[2])):
                             result[row][col] = True
                             continue
                 
